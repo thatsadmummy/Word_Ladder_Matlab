@@ -1,0 +1,35 @@
+function [ result ] = createTheLadder(startWord, targetWord, queue)
+    result = [];
+    dictionary = createDictionary('words_En.txt');
+    if(~arrContains(startWord, dictionary)  || ~arrContains(targetWord, dictionary))
+        disp('word not found');
+        return;
+    end
+    used = {startWord};
+    while(size(queue,2)>0)
+            curr = queue{1};
+            queue(1) = [];
+            dix = size(curr,2);
+            if(dix>0)
+                if(strcmp(curr{dix},targetWord))
+                    %disp('word found');
+                    result = curr;
+                    return;
+                end
+                newWords = oneStep(curr{dix}, targetWord, dictionary);
+                for i = 1:size(newWords,2)
+                    %disp(newWords{i});
+                    if(~arrContains(newWords{i}, used))
+                        used{size(used,2)+1} = newWords{i};
+                        curr{size(curr,2)+1} = newWords{i};
+                        queue{size(queue,2)+1} = curr;
+                    end
+                end
+                %disp(size(queue,2));
+            end
+    end
+    if(result==[])
+        disp('No path found');
+    end
+end
+
