@@ -1,0 +1,23 @@
+function [ bestList ] = oneStep(original, targetWord, dictionary)
+    newListcount = 1;
+    bestListcount = 1;
+    originalDiff = numDiffLetters(original, targetWord);
+    for i = 1:size(dictionary,2)
+        if(numDiffLetters(original, dictionary{i}) == 1)
+            if(numDiffLetters(dictionary{i}, targetWord)<originalDiff)
+                bestList{bestListcount} = dictionary{i};
+                bestListcount=bestListcount+1;
+            else
+                newList{newListcount} = dictionary{i};
+                newListcount=newListcount+1;
+            end
+        end
+    end
+    newListcount = 1;
+    for i = 1:size(newList,2)
+        bestList{bestListcount} = newList{newListcount};
+        newListcount=newListcount+1;
+        bestListcount=bestListcount+1;
+    end
+end
+
