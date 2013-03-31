@@ -1,0 +1,19 @@
+function [ diff ] = numDiffLetters(s1, s2)
+    diff = 0;
+    if(strcmp(s1, s2)==1)
+        return
+    end
+    if(length(s1)~=length(s2))
+        diff = -1;
+        return
+    end
+    for i=1:length(s1)
+        if(s1(i)~=s2(i))
+            diff = diff+1;
+            if(diff>1)
+                return
+            end
+        end
+    end
+end
+
