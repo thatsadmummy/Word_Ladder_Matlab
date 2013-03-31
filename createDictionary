@@ -1,0 +1,12 @@
+function [ list ] = createDictionary(filename)
+file = fopen(filename, 'r');
+place = 1;
+list = [];
+while ~feof(file)
+    line = fgetl(file);
+    list{place} = line;
+    place=place+1;
+end
+fclose(file);
+end
+
