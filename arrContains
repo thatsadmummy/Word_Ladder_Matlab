@@ -1,0 +1,10 @@
+function [output] = arrContains(word, dictionary)
+    numWords = size(dictionary, 2);
+    output = false;
+    for i = 1:numWords
+       if(strcmp(word,dictionary{i}))
+           output=true;
+           break;
+       end
+    end
+end
