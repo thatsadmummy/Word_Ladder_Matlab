@@ -1,0 +1,9 @@
+function [ result ] = createLadder( startWord,  targetWord)
+if(length(startWord)~=length(targetWord))
+    disp('Problem initiating');
+    return;
+end
+queue{1} = {startWord};
+result = createTheLadder(startWord, targetWord, queue);
+end
+
