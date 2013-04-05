@@ -1,11 +1,13 @@
-function [ list ] = createDictionary(filename)
+function [ list ] = createDictionary(filename, wordLen)
 file = fopen(filename, 'r');
 place = 1;
 list = [];
 while ~feof(file)
     line = fgetl(file);
-    list{place} = line;
-    place=place+1;
+    if(length(line) == wordLen)
+        list{place} = line;
+        place=place+1;
+    end
 end
 fclose(file);
 end
