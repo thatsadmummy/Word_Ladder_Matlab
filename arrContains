@@ -1,10 +1,20 @@
-function [output] = arrContains(word, dictionary)
-    numWords = size(dictionary, 2);
-    output = false;
-    for i = 1:numWords
-       if(strcmp(word,dictionary{i}))
-           output=true;
-           break;
-       end
+function [output] = arrContainsX(word, dictionary, startIndex, endIndex)
+    if(startIndex>endIndex)
+        output = false;
+        return
     end
+    mid = floor((startIndex+endIndex+1)/2);
+    check = dictionary{mid};
+    result = strCompare(word, check);
+    if(result==0)
+        output = true;
+        return;
+    elseif(result==1)
+        output = arrContainsX(word, dictionary, mid+1, endIndex);
+        return;
+    elseif(result<1)
+        output = arrContainsX(word, dictionary, startIndex, mid-1);
+        return;
+    end
+    output=false;
 end
