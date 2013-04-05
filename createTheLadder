@@ -1,25 +1,27 @@
 function [ result ] = createTheLadder(startWord, targetWord, queue)
+    tic;
     result = [];
-    dictionary = createDictionary('words_En.txt');
-    if(~arrContains(startWord, dictionary)  || ~arrContains(targetWord, dictionary))
-        disp('word not found');
+    dictionary = createDictionary('words_En.txt', length(startWord));
+    if(~arrContainsX(startWord, dictionary, 1, size(dictionary,2))  || ~arrContainsX(targetWord, dictionary, 1, size(dictionary,2)))
+        disp('Word not in dictionary.');
         return;
     end
     used = {startWord};
     while(size(queue,2)>0)
             curr = queue{1};
-            queue(1) = [];
             dix = size(curr,2);
             if(dix>0)
                 if(strcmp(curr{dix},targetWord))
                     %disp('word found');
                     result = curr;
+                    disp(toc);
                     return;
                 end
                 newWords = oneStep(curr{dix}, targetWord, dictionary);
                 for i = 1:size(newWords,2)
                     %disp(newWords{i});
-                    if(~arrContains(newWords{i}, used))
+                    curr = queue{1};
+                    if(~arrContainsX(newWords{i}, used, 1, size(used, 2)))
                         used{size(used,2)+1} = newWords{i};
                         curr{size(curr,2)+1} = newWords{i};
                         queue{size(queue,2)+1} = curr;
@@ -27,6 +29,7 @@ function [ result ] = createTheLadder(startWord, targetWord, queue)
                 end
                 %disp(size(queue,2));
             end
+            queue(1) = [];
     end
     if(result==[])
         disp('No path found');
