@@ -1,14 +1,14 @@
-function [ list ] = createDictionary(filename, wordLen)
-file = fopen(filename, 'r');
+function [ list ] = createDictionary(filename, wordLen)     %create dictionary of words with specificed length from txt file
+file = fopen(filename, 'r');                                %open specified file
 place = 1;
 list = [];
-while ~feof(file)
+while ~feof(file)                                           %while can still read get the next line and check word length
     line = fgetl(file);
     if(length(line) == wordLen)
-        list{place} = line;
+        list{place} = line;                                 %if it's the right length, put it in the list and increment place in lsit
         place=place+1;
     end
 end
-fclose(file);
+fclose(file);                                               %close file when done reading to prevent memory leakage
 end
 
