@@ -17,8 +17,8 @@ function [ result ] = createTheLadder(startWord, targetWord, queue)
                     disp(toc);
                     return;
                 end
-                newWords = oneStep(curr{dix}, targetWord, dictionary);      % Calling oneStep, our dictionary sorting function
-                for i = 1:size(newWords,2)                                  % Compares words that have been sorted in different priorities
+                newWords = oneStep(curr{dix}, targetWord, dictionary);      % Calling oneStep, which returns next list of words
+                for i = 1:size(newWords,2)                                  % Compares words that have been sorted with different priorities
                     %disp(newWords{i});
                     curr = queue{1};
                     if(~arrContainsX(newWords{i}, used, 1, size(used, 2)))
