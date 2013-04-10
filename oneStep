@@ -9,7 +9,7 @@ function [ bestList ] = oneStep(original, targetWord, dictionary)
                 bestListcount=bestListcount+1;
             else
                 newList{newListcount} = dictionary{i};                      % else place in a lower priority list to optimize runtime
-                newListcount=newListcount+1;                                % we narrow down to fewer words in an effort to find the right one faster
+                newListcount=newListcount+1;                                % by looking at ones heading closer to the target word first
             end
         end
     end
