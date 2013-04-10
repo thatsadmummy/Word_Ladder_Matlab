@@ -3,13 +3,13 @@ function [ bestList ] = oneStep(original, targetWord, dictionary)
     bestListcount = 1;
     originalDiff = numDiffLetters(original, targetWord);
     for i = 1:size(dictionary,2)
-        if(numDiffLetters(original, dictionary{i}) == 1)
+        if(numDiffLetters(original, dictionary{i}) == 1)                    % if the difference is only of 1 alphabet, sort into BestList
             if(numDiffLetters(dictionary{i}, targetWord)<originalDiff)
                 bestList{bestListcount} = dictionary{i};
                 bestListcount=bestListcount+1;
             else
-                newList{newListcount} = dictionary{i};
-                newListcount=newListcount+1;
+                newList{newListcount} = dictionary{i};                      % or else in a lower priority list to optimize the time it takes to compare
+                newListcount=newListcount+1;                                % we narrow down to fewer words in hopes to hit the right one faster
             end
         end
     end
