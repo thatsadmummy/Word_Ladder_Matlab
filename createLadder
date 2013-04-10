@@ -3,7 +3,7 @@ if(length(startWord)~=length(targetWord))                       % Wrapper functi
     disp('Problem initiating');                                 % First we check if startWord and targetWord are same length
     return;                                                     % since that is one of the assumptions of our word ladder
 end
-queue{1} = {startWord};
-result = createTheLadder(startWord, targetWord, queue);         
+queue{1} = {startWord};                                         % the starting list should only contain the first word
+result = createTheLadder(startWord, targetWord, queue);         % return result of main function
 end
 
