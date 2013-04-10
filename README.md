@@ -1,4 +1,4 @@
 Word_Ladder_Matlab
 ==================
 
-Word_Ladders in Matlab
+Creating Word_Ladders with Matlab
