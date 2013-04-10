@@ -1,4 +1,4 @@
-function [ result ] = createLadder( startWord,  targetWord)
+function [ result ] = createLadder( startWord,  targetWord)     % Wrapper function call
 if(length(startWord)~=length(targetWord))                       % This is first function call
     disp('Problem initiating');                                 % First we check if startWord and targetWord are same length
     return;                                                     % since that is one of the parameters of our word ladder
