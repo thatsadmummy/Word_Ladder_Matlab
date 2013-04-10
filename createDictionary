@@ -3,7 +3,7 @@ file = fopen(filename, 'r');                                %open specified file
 place = 1;
 list = [];
 while ~feof(file)                                           %while can still read get the next line and check word length
-    line = fgetl(file);
+    line = fgetl(file);                                     %get the next line
     if(length(line) == wordLen)
         list{place} = line;                                 %if it's the right length, put it in the list and increment place in lsit
         place=place+1;
