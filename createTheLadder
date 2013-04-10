@@ -3,18 +3,18 @@ function [ result ] = createTheLadder(startWord, targetWord, queue)
     result = [];
     dictionary = createDictionary('words_En.txt', length(startWord));
     if(~arrContainsX(startWord, dictionary, 1, size(dictionary,2))  || ~arrContainsX(targetWord, dictionary, 1, size(dictionary,2)))
-        disp('Word not in dictionary.');
-        return;                                     % Checking to see if our input words even exist in the dictionary
+        disp('Word not in dictionary.');                                    % if word isn't valid return out
+        return;                                                             % Checking to see if our input words even exist in the dictionary
     end
-    used = {startWord};
-    while(size(queue,2)>0)
-            curr = queue{1};
-            dix = size(curr,2);
+    used = {startWord};                                                     % at first only used word is the starting one
+    while(size(queue,2)>0)                                                  % while there are still available options
+            curr = queue{1};                                                % get the first list from the queue
+            dix = size(curr,2);                                             % if the last word of the list is the target return it
             if(dix>0)
-                if(strcmp(curr{dix},targetWord))        % Checking to see if the current word is the target word
-                    %disp('word found');                % Our stopping condition
+                if(strcmp(curr{dix},targetWord))                            % Checking to see if the current word is the target word
+                                                                            % Our stopping condition
                     result = curr;
-                    disp(toc);
+                    disp(toc);                                              % print runtime
                     return;
                 end
                 newWords = oneStep(curr{dix}, targetWord, dictionary);      % Calling oneStep, which returns next list of words
