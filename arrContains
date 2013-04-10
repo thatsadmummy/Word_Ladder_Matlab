@@ -7,15 +7,15 @@ function [output] = arrContainsX(word, dictionary, startIndex, endIndex) %using 
     check = dictionary{mid};
     result = strCompare(word, check);                               %compare the middle word with word we're looking for
     if(result==0)
-        output = true;
+        output = true;                                              %the target word has been found and can return true
         return;
                                                                     %recursive calls
     elseif(result==1)                                               %search through the right half (lexicographically bigger)
-        output = arrContainsX(word, dictionary, mid+1, endIndex);
+        output = arrContainsX(word, dictionary, mid+1, endIndex);   %recursive call on right half of arrray
         return;
-    elseif(result<1)
-        output = arrContainsX(word, dictionary, startIndex, mid-1); %search through the left half (lexicographically smaller)
+    elseif(result<1)                                                %search through the left half (lexicographically smaller)
+        output = arrContainsX(word, dictionary, startIndex, mid-1); %recursive call on left half of array
         return;
     end
-    output=false;
+    output=false;                                                   %couldn't find the word in the array, return false
 end
