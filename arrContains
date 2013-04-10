@@ -1,19 +1,20 @@
-function [output] = arrContainsX(word, dictionary, startIndex, endIndex)
+function [output] = arrContainsX(word, dictionary, startIndex, endIndex) %using binary search algorithm to check if dictionary contains certain words
     if(startIndex>endIndex)
         output = false;
         return
     end
-    mid = floor((startIndex+endIndex+1)/2);
+    mid = floor((startIndex+endIndex+1)/2);                         %get the middle word
     check = dictionary{mid};
-    result = strCompare(word, check);
+    result = strCompare(word, check);                               %compare the middle word with word we're looking for
     if(result==0)
         output = true;
         return;
-    elseif(result==1)
+    %recursive calls
+    elseif(result==1)                                               %search through the right half (lexicographically bigger)
         output = arrContainsX(word, dictionary, mid+1, endIndex);
         return;
     elseif(result<1)
-        output = arrContainsX(word, dictionary, startIndex, mid-1);
+        output = arrContainsX(word, dictionary, startIndex, mid-1); %search through the left half (lexicographically smaller)
         return;
     end
     output=false;
