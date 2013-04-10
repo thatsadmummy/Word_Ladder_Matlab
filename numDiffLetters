@@ -1,16 +1,16 @@
-function [ diff ] = numDiffLetters(s1, s2)
+function [ diff ] = numDiffLetters(s1, s2)          
     diff = 0;
-    if(strcmp(s1, s2)==1)
+    if(strcmp(s1, s2)==1)           % return if two words are the same
         return
     end
     if(length(s1)~=length(s2))
-        diff = -1;
+        diff = -1;                  % return -1 if our words are of different length - they can't be compared
         return
     end
-    for i=1:length(s1)
-        if(s1(i)~=s2(i))
-            diff = diff+1;
-            if(diff>1)
+    for i=1:length(s1)              % using a for loop to compare 2 strings char by char
+        if(s1(i)~=s2(i))            
+            diff = diff+1;          % counter for number of alphabetical differences in the two words
+            if(diff>1)              
                 return
             end
         end
