@@ -1,6 +1,6 @@
 function [ diff ] = numDiffLetters(s1, s2)          
     diff = 0;
-    if(strcmp(s1, s2)==1)           % return if two words are the same
+    if(strcmp(s1, s2)==1)           % return 0 if two words are the same
         return
     end
     if(length(s1)~=length(s2))
@@ -9,7 +9,7 @@ function [ diff ] = numDiffLetters(s1, s2)
     end
     for i=1:length(s1)              % using a for loop to compare 2 strings char by char
         if(s1(i)~=s2(i))            
-            diff = diff+1;          % counter for number of alphabetical differences in the two words
+            diff = diff+1;          % counter for number of letter differences between the two words
             if(diff>1)              
                 return
             end
