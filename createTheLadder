@@ -4,21 +4,21 @@ function [ result ] = createTheLadder(startWord, targetWord, queue)
     dictionary = createDictionary('words_En.txt', length(startWord));
     if(~arrContainsX(startWord, dictionary, 1, size(dictionary,2))  || ~arrContainsX(targetWord, dictionary, 1, size(dictionary,2)))
         disp('Word not in dictionary.');
-        return;
+        return;                                     % Checking to see if our input words even exist in the dictionary
     end
     used = {startWord};
     while(size(queue,2)>0)
             curr = queue{1};
             dix = size(curr,2);
             if(dix>0)
-                if(strcmp(curr{dix},targetWord))
-                    %disp('word found');
+                if(strcmp(curr{dix},targetWord))        % Checking to see if the current word is the target word
+                    %disp('word found');                % Our stopping condition
                     result = curr;
                     disp(toc);
                     return;
                 end
-                newWords = oneStep(curr{dix}, targetWord, dictionary);
-                for i = 1:size(newWords,2)
+                newWords = oneStep(curr{dix}, targetWord, dictionary);      % Calling oneStep, our dictionary sorting function
+                for i = 1:size(newWords,2)                                  % Compares words that have been sorted in different priorities
                     %disp(newWords{i});
                     curr = queue{1};
                     if(~arrContainsX(newWords{i}, used, 1, size(used, 2)))
